@@ -121,9 +121,8 @@ git push
 
 
 
-
 ### 🟢 Pipeline après correction
-*(Ajouter capture ici)*
+<img width="2555" height="1170" alt="image" src="https://github.com/user-attachments/assets/07adb886-598d-40a0-892d-a6a8dd7c5d3d" />
 
 
 ---
@@ -141,9 +140,6 @@ git push
 
 Ce projet démontre l’importance de l’intégration de la sécurité dans le cycle de développement grâce à DevSecOps.
 
----
 
-👤 **Auteur : Abdellatif**  
-🎓 **Projet pédagogique DevSecOps**
 
 
