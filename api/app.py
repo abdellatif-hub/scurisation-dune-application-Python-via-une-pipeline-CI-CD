@@ -1,59 +1,58 @@
 from flask import Flask, request
 import sqlite3
-import pickle
-import subprocess
-import hashlib
 import os
-import logging
-app = Flask(__name__)
-API_KEY = "API-KEY-123456"
-logging.basicConfig(level=logging.DEBUG)
+import bcrypt
 
+app = Flask(__name__)
+
+# Secret sécurisé via variable d’environnement
+API_KEY = os.getenv("API_KEY")
+
+# ========================
+# Auth sécurisé
+# ========================
 @app.route("/auth", methods=["POST"])
 def auth():
-    username = request.json.get("username")
-    password = request.json.get("password")
+    data = request.get_json(force=True)
+    username = data.get("username", "")
+    password = data.get("password", "")
+
+    if not username or not password:
+        return {"error": "Invalid input"}, 400
+
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
-    query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
-    cursor.execute(query)
-    if cursor.fetchone():
+    cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
+    row = cursor.fetchone()
+
+    if row and bcrypt.checkpw(password.encode(), row[0]):
         return {"status": "authenticated"}
     return {"status": "denied"}
 
-@app.route("/exec", methods=["POST"])
-def exec_cmd():
-    cmd = request.json.get("cmd")
-    output = subprocess.check_output(cmd, shell=True)
-    return {"output": output.decode()}
-
-@app.route("/deserialize", methods=["POST"])
-def deserialize():
-    data = request.data
-    obj = pickle.loads(data)
-    return {"object": str(obj)}
-
+# ========================
+# Chiffrement fort
+# ========================
 @app.route("/encrypt", methods=["POST"])
 def encrypt():
     text = request.json.get("text", "")
-    hashed = hashlib.md5(text.encode()).hexdigest()
-    return {"hash": hashed}
+    hashed = bcrypt.hashpw(text.encode(), bcrypt.gensalt())
+    return {"hash": hashed.decode()}
 
+# ========================
+# Lecture fichier sécurisée
+# ========================
 @app.route("/file", methods=["POST"])
 def read_file():
-    filename = request.json.get("filename")
+    filename = request.json.get("filename", "")
+    if ".." in filename or filename.startswith("/"):
+        return {"error": "Access denied"}, 403
+
+    if not os.path.exists(filename):
+        return {"error": "File not found"}, 404
+
     with open(filename, "r") as f:
         return {"content": f.read()}
 
-@app.route("/debug", methods=["GET"])
-def debug():
-    return {"api_key": API_KEY, "env": dict(os.environ), "cwd": os.getcwd()}
-
-@app.route("/log", methods=["POST"])
-def log_data():
-    data = request.json
-    logging.info(f"User input: {data}")
-    return {"status": "logged"}
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+@app.route("/hello", methods=["GET"])
+def hello():
+    return {"message": "Secure DevSecOps Application"}
