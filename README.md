@@ -59,13 +59,49 @@ devsecops-assignment/
 
 ---
 
+## .github/workflows/devsecops.yml
 
+<img width="2541" height="1249" alt="image" src="https://github.com/user-attachments/assets/94bf59f7-d516-49d6-8d14-c259a8560c0e" />
 
+---
+## Dockerfile sécurisé
 
+<img width="2557" height="1237" alt="image" src="https://github.com/user-attachments/assets/82c7256d-b120-440e-9150-644eab07d491" />
 
+---
+
+## requirements.txt
+
+<img width="2558" height="1265" alt="image" src="https://github.com/user-attachments/assets/a5c57281-b9e4-4f0e-b419-11ffbbac7406" />
 
 
 ---
+## app.py
+
+<img width="2555" height="1213" alt="image" src="https://github.com/user-attachments/assets/07ef57c4-46bf-4c53-a2a8-76c6677ade9c" />
+
+
+---
+
+### 🔴 Pipeline avant correction
+
+<img width="2554" height="852" alt="image" src="https://github.com/user-attachments/assets/627d01f4-66a2-41ac-8f8b-7b6cae60ec89" />
+
+---
+## Push
+````
+
+git add .
+git commit -m "Secure application DevSecOps Final"
+git push
+
+
+````
+
+<img width="2547" height="1246" alt="image" src="https://github.com/user-attachments/assets/ec75362a-199f-4a69-9c92-a45c230a300d" />
+
+---
+
 
 
 
@@ -83,16 +119,12 @@ devsecops-assignment/
 
 ---
 
-## 📸 Captures d’écran
 
-### 🔴 Pipeline avant correction
-*(Ajouter capture ici)*
+
 
 ### 🟢 Pipeline après correction
 *(Ajouter capture ici)*
 
-### 🔍 Résultats des outils
-*(Ajouter captures ici)*
 
 ---
 
