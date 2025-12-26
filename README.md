@@ -83,11 +83,6 @@ devsecops-assignment/
 
 ---
 
-### 🔴 Pipeline avant correction
-
-<img width="2554" height="852" alt="image" src="https://github.com/user-attachments/assets/627d01f4-66a2-41ac-8f8b-7b6cae60ec89" />
-
----
 ## Push
 ````
 
@@ -102,8 +97,11 @@ git push
 
 ---
 
+### 🔴 Pipeline avant correction
 
+<img width="2554" height="852" alt="image" src="https://github.com/user-attachments/assets/627d01f4-66a2-41ac-8f8b-7b6cae60ec89" />
 
+---
 
 ## 🔐 Corrections appliquées
 
