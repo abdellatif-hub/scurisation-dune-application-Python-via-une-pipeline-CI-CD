@@ -1,12 +1,14 @@
 FROM python:3.12-slim
 
-RUN useradd appuser
-USER appuser
-
 WORKDIR /app
 
+# Installer les dépendances en root
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Créer utilisateur sécurisé APRÈS installation
+RUN useradd appuser
+USER appuser
 
 COPY api/ .
 
