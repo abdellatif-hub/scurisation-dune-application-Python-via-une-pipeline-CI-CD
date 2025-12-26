@@ -119,9 +119,17 @@ git push
 
 ---
 
+## push 
 
+````
+git add .
+git commit -m "Fix Docker permissions"
+git push
+
+````
 
 ### 🟢 Pipeline après correction
+
 <img width="2555" height="1170" alt="image" src="https://github.com/user-attachments/assets/07adb886-598d-40a0-892d-a6a8dd7c5d3d" />
 
 
